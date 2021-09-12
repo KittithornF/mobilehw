@@ -33,11 +33,11 @@ class _GamePageState extends State<GamePage> {
             style: GoogleFonts.righteous(),
           ),
           actions: [
-            // ปุ่ม OK ใน dialog
+
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                // ปิด dialog
+
                 Navigator.of(context).pop();
               },
             ),
@@ -90,7 +90,7 @@ class _GamePageState extends State<GamePage> {
         ),
         Text(
           'GUESS THE NUMBER',
-          style: GoogleFonts.righteous(fontSize: 22.0),
+          style: GoogleFonts.righteous(fontSize: 30.0),
         ),
       ],
     );
@@ -118,11 +118,35 @@ class _GamePageState extends State<GamePage> {
                       _feedback = null;
                     });
                   },
-                  child: Text(
-                    'NEW GAME',
-                    style: GoogleFonts.righteous(color: Colors.white),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        //borderRadius: BorderRadius.circular(.0),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(2.0, 2.0),
+                            color: Colors.black54,
+                            spreadRadius: 3,
+                            blurRadius: 5.0,
+                          )
+                        ],
+
+                        border: Border.all(width: 1.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'NEW GAME',
+                          style: GoogleFonts.righteous(
+                              fontSize: 15, color: Colors.black),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
+
             ],
           );
   }
@@ -131,7 +155,7 @@ class _GamePageState extends State<GamePage> {
     return Card(
       elevation: 10,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
-      color: Colors.white54,
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(
@@ -173,7 +197,8 @@ class _GamePageState extends State<GamePage> {
                       _feedback = '❌TOO LOW!';
                     }
                   } else {
-                    _feedback = 'not found guess number';
+                    _feedback = '';
+                    _showMaterialDialog('ERROR!', 'Please enter the number');
                   }
                   _controller.clear();
                 });
